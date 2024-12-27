@@ -1,13 +1,10 @@
-
 #ifndef STRUKTURY_H
 #define STRUKTURY_H
 
-
 typedef struct board {
-    int PosX;
     int PosY;
+    int PosX;
     int IsMine;
-
     struct board *left;
     struct board *right;
     struct board *up;
@@ -19,11 +16,9 @@ typedef struct board {
 } board;
 
 typedef struct PlayBoard {
-    int PosX;
-    int PosY;
-    char output;
-} PlayBoard
+    char *output;
+} PlayBoard;
 
-
-#endif 
+PlayBoard**stworz_plansze(int rozmiar);
+#endif
 
