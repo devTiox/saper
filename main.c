@@ -1,0 +1,1 @@
+mainik tego typu
