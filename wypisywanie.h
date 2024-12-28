@@ -2,6 +2,8 @@
 #define WYPISYWANIE_H
 #include "struktury.h"
 
-void pierwsza(int rozmiar,PlayBoard**Plansza);
-void zmienianie(int rozmiar,PlayBoard**Plansza);
+void wybor_poziomu(int*l_bomb,int*y,int*x,char move);
+void help();
+void pierwsza(int y,int x,PlayBoard**Plansza);
+void zmienianie(int y,int x,PlayBoard**Plansza);
 #endif

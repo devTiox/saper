@@ -2,9 +2,8 @@
 #define STRUKTURY_H
 
 typedef struct board {
-    int PosY;
-    int PosX;
     int IsMine;
+    int bomby_blisko;
     struct board *left;
     struct board *right;
     struct board *up;
@@ -19,6 +18,9 @@ typedef struct PlayBoard {
     char *output;
 } PlayBoard;
 
-PlayBoard**stworz_plansze(int rozmiar);
+PlayBoard**stworz_plansze(int y,int x);
+board**pole_minowe(int y,int x);
+void ustaw_sasiadow(int y,int x,board**bomby);
+
 #endif
 

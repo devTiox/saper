@@ -3,34 +3,80 @@
 #include "struktury.h"
 #include "wypisywanie.h"
 
-void poczatkowa(int rozmiar,PlayBoard**Plansza)
+void wybor_poziomu(int*l_bomb,int*y,int*x,char move)
 {
-	for(int y=0;y<rozmiar;y++)
+	printf("Wybierz poziom trudnosci ");
+        if(scanf("%c",&move)!=0)
+        {
+                switch (move)
+                        {
+                        case 'c':
+                                printf("Podaj rozmiar planszy");
+				int proc;
+                                scanf("%d %d %d",y,x,&proc);
+				*l_bomb=0.01*proc*(*x)*(*y);
+                                break;
+                        case 'e':
+                                printf("easy\n");
+                                *x=5;
+                                *y=5;
+				*l_bomb=0.3*(*x)*(*y);
+                                break;
+                        case 'm':
+                                printf("medium\n");
+                                *x=10;
+                                *y=10;
+				*l_bomb=0.45*(*x)*(*y);
+                                break;
+                        case 'h':
+                                printf("hard\n");
+                                *x=15;
+                                *y=15;
+				*l_bomb=0.60*(*x)*(*y);
+                                break;
+                        default:
+                                help();
+				exit (1);
+                        }
+
+        }else
+                printf("nieudany odczyt wyboru\n");
+}
+
+void help()
+{
+	printf("Instrukcja obslugi:\n");
+	printf("Wybor poziomu trudnosci:\n");
+	printf("c-custom(wlasne ustawienia,koniecznosc podania procentowej ilosci bomb!!)\n");
+	printf("e-easy(latwy 5x5 X bomb)\nm-medium(sredni 10x10 X bomb)\nh-hard(trudny 15x15 X bomb)\n");
+}
+
+void poczatkowa(int y,int x,PlayBoard**Plansza)
+{
+	for(int i=0;i<y;i++)
 	{
-		printf("%3d",y+1);
-		for(int x=0;x<rozmiar;x++)
+		printf("%3d",i+1);
+		for(int j=0;j<x;j++)
 		{
-			for(int i=0;i<3;i++)
-			printf("%c",Plansza[y][x].output[i]);
+			for(int l=0;l<3;l++)
+			printf("%c",Plansza[i][j].output[l]);
 
 		}printf("\n");
 	}
 }
 
-void zmienianie(int rozmiar,PlayBoard**Plansza)
+void zmienianie(int y,int x,PlayBoard**Plansza)
 {
-	int a,b;
-	printf("jaki ruch:");
-	scanf("%d %d",&a,&b);
-	Plansza[a-1][b-1].output[1]=' ';
-	printf("\033[H\033[J");
-        for(int y=0;y<rozmiar;y++)
+	for(int k=0;k<=y;k++)
+		printf("%3d",k);
+	printf("\n");
+        for(int i=0;i<y;i++)
         {
-                printf("%3d",y+1);
-                for(int x=0;x<rozmiar;x++)
+                printf("%3d",i+1);
+                for(int j=0;j<x;j++)
                 {
-                        for(int i=0;i<3;i++)
-                        printf("%c",Plansza[y][x].output[i]);
+                        for(int l=0;l<3;l++)
+                        printf("%c",Plansza[i][j].output[l]);
 
                 }printf("\n");
         }
