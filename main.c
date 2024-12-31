@@ -26,7 +26,7 @@ int main(int argc,char**argv)
 	poczatkowa(y,x,Plansza);
 	while(1)
 	{
-		ruch(Plansza);
+		ruch(Plansza, bomby, y, x);
 		zmienianie(y,x,Plansza);
 
 	}
