@@ -3,6 +3,6 @@
 #include "struktury.h"
 #include "wypisywanie.h"
 
-void ruch(PlayBoard**Plansza, board**bomby, int y, int x);
+int ruch(PlayBoard**Plansza, board**bomby, int y, int x);
 
 #endif

@@ -9,7 +9,9 @@ int main(int argc,char**argv)
 	int l_bomb;
 	int y, x;
 	char move;
-	wybor_poziomu(&l_bomb,&y,&x,move);
+	int mnoznik;
+	int punkty=0;
+	wybor_poziomu(&l_bomb,&y,&x,move,&mnoznik);
 	PlayBoard**Plansza=stworz_plansze(y,x);
 	board**bomby=pole_minowe(y,x);
 	rozmiesc_bomby(l_bomb,y,x,bomby);	
@@ -26,8 +28,8 @@ int main(int argc,char**argv)
 	poczatkowa(y,x,Plansza);
 	while(1)
 	{
-		ruch(Plansza, bomby, y, x);
-		zmienianie(y,x,Plansza);
+		punkty=punkty+(ruch(Plansza, bomby, y, x)*mnoznik);
+		zmienianie(y,x,Plansza,punkty);
 
 	}
 }

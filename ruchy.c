@@ -15,31 +15,53 @@ void koniec(PlayBoard**Plansza, board**bomby, int y, int x)
         }
 }
 
-void ruch(PlayBoard**Plansza, board**bomby, int y, int x)
+void odkryj_sasiadow(PlayBoard**Plansza, board**bomby, int y, int x, int a, int b, int*punkty)
 {
+
+}
+
+void odkryj(PlayBoard**Plansza, board**bomby, int y, int x, int a, int b, int*punkty)
+{
+        if(bomby[a][b].bomby_blisko==0)
+                odkryj_sasiadow(Plansza, bomby, y, x, a, b, &punkty);
+        else
+        {
+                Plansza[a][b].output[1]=bomby[a][b].bomby_blisko + '0';
+        }
+}
+
+int ruch(PlayBoard**Plansza, board**bomby, int y, int x)
+{
+        int punkty=0;
         int a,b;
         char c;
         printf("jaki ruch:");
         scanf("%d %d %c",&a,&b,&c);
+        a=a-1;
+        b=b-1;
         switch (c)
         {
         case ' ':
         case 'm':
-                if(bomby[a-1][b-1].IsMine==1){
+                if(bomby[a][b].IsMine==1){
                         koniec(Plansza, bomby, y, x);
                 }
                 else
-                        Plansza[a-1][b-1].output[1]=bomby[a-1][b-1].bomby_blisko + '0';
+                {
+                        odkryj(Plansza, bomby, y, x, a, b, &punkty);
+
+                }
                 break;
         case 'f':
         case 'F':
-                Plansza[a-1][b-1].output[1]='F';
+                Plansza[a][b].output[1]='F';
                 break;
 
         default:
                 help();
                 break;
         }
+        return punkty;
         
 
 }
