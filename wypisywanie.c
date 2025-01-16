@@ -3,7 +3,7 @@
 #include "struktury.h"
 #include "wypisywanie.h"
 
-void wybor_poziomu(int*l_bomb,int*y,int*x,char move)
+void wybor_poziomu(int*l_bomb,int*y,int*x,char move,int*mnoznik)
 {
 	printf("Wybierz poziom trudnosci ");
         if(scanf("%c",&move)!=0)
@@ -11,24 +11,28 @@ void wybor_poziomu(int*l_bomb,int*y,int*x,char move)
                 switch (move)
                         {
                         case 'c':
+                                *mnoznik=0;
                                 printf("Podaj rozmiar planszy");
 				int proc;
                                 scanf("%d %d %d",y,x,&proc);
 				*l_bomb=0.01*proc*(*x)*(*y);
                                 break;
                         case 'e':
+                                *mnoznik=1;
                                 printf("easy\n");
                                 *x=5;
                                 *y=5;
 				*l_bomb=0.3*(*x)*(*y);
                                 break;
                         case 'm':
+                                *mnoznik=2;
                                 printf("medium\n");
                                 *x=10;
                                 *y=10;
 				*l_bomb=0.45*(*x)*(*y);
                                 break;
                         case 'h':
+                                *mnoznik=3;
                                 printf("hard\n");
                                 *x=15;
                                 *y=15;
@@ -53,6 +57,7 @@ void help()
 
 void poczatkowa(int y,int x,PlayBoard**Plansza)
 {
+        printf("Punkty: 0\n");
 	for(int i=0;i<y;i++)
 	{
 		printf("%3d",i+1);
@@ -65,8 +70,9 @@ void poczatkowa(int y,int x,PlayBoard**Plansza)
 	}
 }
 
-void zmienianie(int y,int x,PlayBoard**Plansza)
+void zmienianie(int y,int x,PlayBoard**Plansza,int punkty)
 {
+        printf("Punkty: %d\n",punkty);
 	for(int k=0;k<=y;k++)
 		printf("%3d",k);
 	printf("\n");
