@@ -3,6 +3,8 @@
 #include "struktury.h"
 #include "wypisywanie.h"
 
+extern int BOOM;
+
 int ruch(PlayBoard**Plansza, board**bomby, int y, int x);
 
 #endif

@@ -23,7 +23,7 @@ void odkryj_sasiadow(PlayBoard**Plansza, board**bomby, int y, int x, int a, int 
 void odkryj(PlayBoard**Plansza, board**bomby, int y, int x, int a, int b, int*punkty)
 {
         if(bomby[a][b].bomby_blisko==0)
-                odkryj_sasiadow(Plansza, bomby, y, x, a, b, &punkty);
+                odkryj_sasiadow(Plansza, bomby, y, x, a, b, punkty);
         else
         {
                 Plansza[a][b].output[1]=bomby[a][b].bomby_blisko + '0';
@@ -32,36 +32,42 @@ void odkryj(PlayBoard**Plansza, board**bomby, int y, int x, int a, int b, int*pu
 
 int ruch(PlayBoard**Plansza, board**bomby, int y, int x)
 {
-        int punkty=0;
+	int punkty=0;
         int a,b;
         char c;
         printf("jaki ruch:");
-        scanf("%d %d %c",&a,&b,&c);
-        a=a-1;
-        b=b-1;
-        switch (c)
-        {
-        case ' ':
-        case 'm':
-                if(bomby[a][b].IsMine==1){
-                        koniec(Plansza, bomby, y, x);
-                }
-                else
-                {
-                        odkryj(Plansza, bomby, y, x, a, b, &punkty);
+       	scanf("%d %d %c",&a,&b,&c);
+	a=a-1;
+       	b=b-1;
+       	switch (c)
+       	{
+       	case ' ':
+       	case 'm':
+       	        if(bomby[a][b].IsMine==1)
+		{
+       	                koniec(Plansza, bomby, y, x);
+			BOOM=0;
+               	}
+               	else
+               	{
+                       	odkryj(Plansza, bomby, y, x, a, b, &punkty);
+			punkty+=Plansza[a][b].output[1];
 
-                }
-                break;
-        case 'f':
-        case 'F':
-                Plansza[a][b].output[1]='F';
-                break;
+               	}
+               	break;
+       	case 'f':
+       	case 'F':
+		if(Plansza[a][b].output[1]=='F')
+               		Plansza[a][b].output[1]='-';
+		else if(Plansza[a][b].output[1]=='-')
+			Plansza[a][b].output[1]='F';
+		else
+			;
+               	break;
 
-        default:
-                help();
-                break;
-        }
-        return punkty;
-        
-
+       	default:
+               	help();
+               	break;
+      	}
+	return punkty;
 }

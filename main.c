@@ -4,6 +4,9 @@
 #include "wypisywanie.h"
 #include "ruchy.h"
 #include "generator_min.h"
+
+int BOOM=1;
+
 int main(int argc,char**argv)
 {
 	int l_bomb;
@@ -26,10 +29,13 @@ int main(int argc,char**argv)
 		printf("%3d",k);
 	printf("\n");
 	poczatkowa(y,x,Plansza);
-	while(1)
+	while(BOOM)
 	{
 		punkty=punkty+(ruch(Plansza, bomby, y, x)*mnoznik);
-		zmienianie(y,x,Plansza,punkty);
+		zmienianie(y,x,Plansza,&punkty);
 
 	}
+	printf("Koniec gry.Liczba zdobytych punktow:%d\n",punkty);
+	
+	return 0;
 }
