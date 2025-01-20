@@ -13,8 +13,10 @@ int main(int argc,char**argv)
 	int y, x;
 	char move;
 	int mnoznik;
-	int punkty=0;
+	int pkt=0;
+	int max_pkt;
 	wybor_poziomu(&l_bomb,&y,&x,move,&mnoznik);
+	max_pkt=((x*y)-l_bomb)*mnoznik;
 	PlayBoard**Plansza=stworz_plansze(y,x);
 	board**bomby=pole_minowe(y,x);
 	rozmiesc_bomby(l_bomb,y,x,bomby);	
@@ -29,13 +31,13 @@ int main(int argc,char**argv)
 		printf("%3d",k);
 	printf("\n");
 	poczatkowa(y,x,Plansza);
-	while(BOOM)
+	while(BOOM && pkt != max_pkt)
 	{
-		punkty=punkty+(ruch(Plansza, bomby, y, x)*mnoznik);
-		zmienianie(y,x,Plansza,&punkty);
+		pkt=pkt+(ruch(Plansza, bomby, y, x)*mnoznik);
+		zmienianie(y,x,Plansza,&pkt);
 
 	}
-	printf("Koniec gry.Liczba zdobytych punktow:%d\n",punkty);
+	printf("Koniec gry.Liczba zdobytych punktow:%d\n",pkt);
 	
 	return 0;
 }

@@ -17,16 +17,28 @@ void koniec(PlayBoard**Plansza, board**bomby, int y, int x)
 
 void odkryj_sasiadow(PlayBoard**Plansza, board**bomby, int y, int x, int a, int b, int*punkty)
 {
-
+        odkryj(Plansza, bomby, y, x, a-1, b-1, &punkty);
+        odkryj(Plansza, bomby, y, x, a-1, b, &punkty);
+        odkryj(Plansza, bomby, y, x, a-1, b+1, &punkty);
+        odkryj(Plansza, bomby, y, x, a, b-1, &punkty);
+        odkryj(Plansza, bomby, y, x, a, b+1, &punkty);
+        odkryj(Plansza, bomby, y, x, a+1, b-1, &punkty);
+        odkryj(Plansza, bomby, y, x, a+1, b, &punkty);
+        odkryj(Plansza, bomby, y, x, a+1, b+1, &punkty);
 }
 
 void odkryj(PlayBoard**Plansza, board**bomby, int y, int x, int a, int b, int*punkty)
 {
-        if(bomby[a][b].bomby_blisko==0)
-                odkryj_sasiadow(Plansza, bomby, y, x, a, b, punkty);
-        else
-        {
-                Plansza[a][b].output[1]=bomby[a][b].bomby_blisko + '0';
+        if(Plansza[a][b].output[1]=='-'){
+                *punkty++;
+                if(bomby[a][b].bomby_blisko==0){
+                        Plansza[a][b].output[1]='0';
+                        odkryj_sasiadow(Plansza, bomby, y, x, a, b, &punkty);
+                }
+                else
+                {
+                        Plansza[a][b].output[1]=bomby[a][b].bomby_blisko + '0';
+                }
         }
 }
 
@@ -51,8 +63,6 @@ int ruch(PlayBoard**Plansza, board**bomby, int y, int x)
                	else
                	{
                        	odkryj(Plansza, bomby, y, x, a, b, &punkty);
-			punkty+=Plansza[a][b].output[1];
-
                	}
                	break;
        	case 'f':
