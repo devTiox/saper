@@ -15,22 +15,10 @@ void koniec(PlayBoard**Plansza, board**bomby, int y, int x)
         }
 }
 
-void odkryj_sasiadow(PlayBoard**Plansza, board**bomby, int y, int x, int a, int b, int*punkty)
-{
-        odkryj(Plansza, bomby, y, x, a-1, b-1, punkty);
-        odkryj(Plansza, bomby, y, x, a-1, b, punkty);
-        odkryj(Plansza, bomby, y, x, a-1, b+1, punkty);
-        odkryj(Plansza, bomby, y, x, a, b-1, punkty);
-        odkryj(Plansza, bomby, y, x, a, b+1, punkty);
-        odkryj(Plansza, bomby, y, x, a+1, b-1, punkty);
-        odkryj(Plansza, bomby, y, x, a+1, b, punkty);
-        odkryj(Plansza, bomby, y, x, a+1, b+1, punkty);
-}
-
 void odkryj(PlayBoard**Plansza, board**bomby, int y, int x, int a, int b, int*punkty)
 {
         if(Plansza[a][b].output[1]=='-'){
-                *punkty++;
+                (*punkty)++;
                 if(bomby[a][b].bomby_blisko==0){
                         Plansza[a][b].output[1]='0';
                         odkryj_sasiadow(Plansza, bomby, y, x, a, b, punkty);
@@ -41,6 +29,29 @@ void odkryj(PlayBoard**Plansza, board**bomby, int y, int x, int a, int b, int*pu
                 }
         }
 }
+
+
+void odkryj_sasiadow(PlayBoard** Plansza, board** bomby, int y, int x, int c, int d, int* punkty)
+{
+    if (c - 1 >= 0 && d - 1 >= 0)
+        odkryj(Plansza, bomby, y, x, c - 1, d - 1, punkty);
+    if (c - 1 >= 0)
+        odkryj(Plansza, bomby, y, x, c - 1, d, punkty);
+    if (c - 1 >= 0 && d + 1 < x)
+        odkryj(Plansza, bomby, y, x, c - 1, d + 1, punkty);
+    if (d - 1 >= 0)
+        odkryj(Plansza, bomby, y, x, c, d - 1, punkty);
+    if (d + 1 < x)
+        odkryj(Plansza, bomby, y, x, c, d + 1, punkty);
+    if (c + 1 < y && d - 1 >= 0)
+        odkryj(Plansza, bomby, y, x, c + 1, d - 1, punkty);
+    if (c + 1 < y)
+        odkryj(Plansza, bomby, y, x, c + 1, d, punkty);
+    if (c + 1 < y && d + 1 < x)
+        odkryj(Plansza, bomby, y, x, c + 1, d + 1, punkty);
+}
+
+
 
 int ruch(PlayBoard**Plansza, board**bomby, int y, int x)
 {
@@ -53,17 +64,15 @@ int ruch(PlayBoard**Plansza, board**bomby, int y, int x)
        	b=b-1;
        	switch (c)
        	{
-       	case ' ':
        	case 'm':
        	        if(bomby[a][b].IsMine==1)
-		{
-       	                koniec(Plansza, bomby, y, x);
-			BOOM=0;
+				{
+       	            koniec(Plansza, bomby, y, x);
+					BOOM=0;
                	}
                	else
                	{
-                       	odkryj(Plansza, bomby, y, x, a, b, &punkty);
-			punkty+=Plansza[a][b].output[1];
+                    odkryj(Plansza, bomby, y, x, a, b, &punkty);
                	}
                	break;
        	case 'f':
