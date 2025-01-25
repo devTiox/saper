@@ -44,59 +44,28 @@ board**pole_minowe(int y,int x)
 
 void ustaw_sasiadow(int y,int x,board**pole)
 {
+	 int offsets[8][2] = 
+	{
+        {-1, -1}, {-1, 0}, {-1, 1},  // Góra-lewo, góra, góra-prawo
+        { 0, -1},          { 0, 1},  // Lewo,         Prawo
+        { 1, -1}, { 1, 0}, { 1, 1}   // Dół-lewo, dół, dół-prawo
+    	};
 	for(int i=0;i<y;i++)
 	{
 		for(int j=0;j<x;j++)
 		{
-			pole[i][j].bomby_blisko=0;
-			if(j>0)
+			            // Iteracja po sąsiadach
+            		for (int k = 0; k < 8; k++) 
 			{
-				pole[i][j].left=&pole[i][j-1];
-				if(pole[i][j-1].IsMine)
-					pole[i][j].bomby_blisko++;
-			}
-                        if(j<x-1)
-			{
-				pole[i][j].right=&pole[i][j+1];
-				if(pole[i][j+1].IsMine)
-                                        pole[i][j].bomby_blisko++;
-			}
-			if(i>0)
-			{
-				pole[i][j].up=&pole[i-1][j];
-				if(pole[i-1][j].IsMine)
-                                        pole[i][j].bomby_blisko++;
-			}
-			if(i<y-1)
-			{
-				pole[i][j].down=&pole[i+1][j];
-				if(pole[i+1][j].IsMine)
-                                        pole[i][j].bomby_blisko++;
-			}	
-			if(i>0&&j>0)
-			{
-				pole[i][j].lup=&pole[i-1][j-1];
-				if(pole[i-1][j-1].IsMine)
-                                        pole[i][j].bomby_blisko++;
-			}
-			if(i>0&&j<x-1)
-			{
-				pole[i][j].pup=&pole[i-1][j+1];
-				if(pole[i-1][j+1].IsMine)
-                                        pole[i][j].bomby_blisko++;
-			}
-		      	if(i<y-1&&j>0)
-			{
-				pole[i][j].ldown=&pole[i+1][j-1];
-				if(pole[i+1][j-1].IsMine)
-                                        pole[i][j].bomby_blisko++;
-			}
-			if(i<y-1&&j<x-1)
-			{
-				pole[i][j].pdown=&pole[i+1][j+1];
-				if(pole[i+1][j+1].IsMine)
-                                        pole[i][j].bomby_blisko++;
-			}
+                		int ni = i + offsets[k][0];
+                		int nj = j + offsets[k][1];
+
+               			 // Sprawdzenie granic
+                		if (ni >= 0 && ni < y && nj >= 0 && nj < x) 
+				{
+                    			pole[i][j].bomby_blisko += pole[ni][nj].IsMine;
+               	 		}
+            		}
 			if(pole[i][j].bomby_blisko!=0)
 				printf("sosiad: %d %d %d\n",i+1,j+1,pole[i][j].bomby_blisko);
 		}

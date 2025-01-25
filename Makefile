@@ -1,8 +1,9 @@
 CC=gcc
-saper: main.o ruchy.o generator_min.o struktury.o wypisywanie.o
+saper: main.o ruchy.o generator_min.o struktury.o wypisywanie.o tabela.o
 	$(CC) main.o ruchy.o generator_min.o struktury.o wypisywanie.o tabela.o -o saper
 
 main.o: ruchy.o generator_min.o struktury.o wypisywanie.o tabela.o main.c
+
 	$(CC) -c main.c
 
 generator_min.o: generator_min.c generator_min.h struktury.o

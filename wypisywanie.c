@@ -3,6 +3,27 @@
 #include "struktury.h"
 #include "wypisywanie.h"
 
+int custom_mnoznik(int*x,int*y,int bombs_c)
+{
+	int mnoznik;
+                                float wariant=bombs_c/(*y)*(*x);
+                                if(wariant<0.15)
+                                        mnoznik=1;
+                                else if(wariant>=0.15&&wariant<0.2)
+                                        mnoznik=2;
+                                else if(wariant>=0.2&&wariant<0.5)
+                                        mnoznik=3;
+                                else
+                                        mnoznik=4;
+                                if(bombs_c>0.76*(*y)*(*x))
+                                {
+                                        printf("Zbyt duzo bomb\n");
+                                        help();
+                                        exit (2);
+                                }
+				return mnoznik;
+
+}
 void wybor_poziomu(int*l_bomb,int*y,int*x,char move,int*mnoznik)
 {
 	printf("Wybierz poziom trudnosci ");
@@ -11,16 +32,10 @@ void wybor_poziomu(int*l_bomb,int*y,int*x,char move,int*mnoznik)
                 switch (move)
                         {
                         case 'c':
-                                *mnoznik=0;
                                 printf("Podaj rozmiar planszy");
 				int bombs_c;
                                 scanf("%d %d %d",y,x,&bombs_c);
-				if(bombs_c>0.76*(*y)*(*x))
-				{
-					printf("Zbyt duzo bomb\n");
-					help();
-					exit (2);
-				}
+				*mnoznik=custom_mnoznik(x,y,bombs_c);
 				*l_bomb=bombs_c;
                                 break;
                         case 'e':
@@ -63,7 +78,6 @@ void help()
 
 void poczatkowa(int y,int x,PlayBoard**Plansza)
 {
-        printf("Punkty: 0\n");
 	for(int i=0;i<y;i++)
 	{
 		printf("%3d",i+1);
@@ -79,7 +93,6 @@ void poczatkowa(int y,int x,PlayBoard**Plansza)
 void zmienianie(int y,int x,PlayBoard**Plansza,int*punkty)
 {
 	int pkt=punkty[0];
-        printf("Punkty: %d\n",pkt);
 	for(int k=0;k<=y;k++)
 		printf("%3d",k);
 	printf("\n");
@@ -92,6 +105,8 @@ void zmienianie(int y,int x,PlayBoard**Plansza,int*punkty)
                         printf("%c",Plansza[i][j].output[l]);
 
                 }printf("\n");
+
         }
 
+        printf("Punkty: %d\n",pkt);
 }
