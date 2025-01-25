@@ -2,7 +2,7 @@ CC=gcc
 saper: main.o ruchy.o generator_min.o struktury.o wypisywanie.o
 	$(CC) main.o ruchy.o generator_min.o struktury.o wypisywanie.o -o saper
 
-main.o: ruchy.o generator_min.o struktury.o wypisywanie.o
+main.o: ruchy.o generator_min.o struktury.o wypisywanie.o main.c
 	$(CC) -c main.c
 
 generator_min.o: generator_min.c generator_min.h struktury.o
