@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "struktury.h"
 #include "wypisywanie.h"
 #include "ruchy.h"
@@ -15,6 +16,14 @@ int main(int argc,char**argv)
 	int mnoznik;
 	int pkt=0;
 	int max_pkt;
+	int opt;
+	if(opt = getopt(argc ,argv, "f:"))
+	{
+		FILE*plik=fopen(optarg,"r");
+		fscanf(plik,"%d %d",&pkt,&max_pkt);
+		printf("%d %d\n",pkt , max_pkt);
+		return 0;
+	}
 	wybor_poziomu(&l_bomb,&y,&x,move,&mnoznik);
 	max_pkt=((x*y)-l_bomb)*mnoznik;
 	PlayBoard**Plansza=stworz_plansze(y,x);
