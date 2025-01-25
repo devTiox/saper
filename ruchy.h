@@ -7,6 +7,10 @@
 
 extern int BOOM;
 
+void koniec(PlayBoard**Plansza, board**bomby, int y, int x);
+
+int ruch_f(PlayBoard**Plansza, board**bomby, int y, int x, int a, int b);
+
 void generuj(int l_bomb, int y, int x, board**bomby);
 
 int ruch(PlayBoard**Plansza, board**bomby, int y, int x, int n, int l_bomb);
