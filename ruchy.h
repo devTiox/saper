@@ -4,7 +4,10 @@
 #include "wypisywanie.h"
 #include "generator_min.h"
 
+
 extern int BOOM;
+
+void generuj(int l_bomb, int y, int x, board**bomby);
 
 int ruch(PlayBoard**Plansza, board**bomby, int y, int x, int n, int l_bomb);
 

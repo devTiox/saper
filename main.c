@@ -7,6 +7,7 @@
 #include "generator_min.h"
 #include "tabela.h"
 
+
 void generuj(int l_bomb, int y, int x, board**bomby)
 {
 	reset_bomb(y,x,bomby);
@@ -32,7 +33,7 @@ int main(int argc,char**argv)
             nick[len-1] = '\0';
         }
     }
-    printf("Twoj nick: %s\n", nick);
+    
 	int l_bomb;
 	int y, x;
 	char move;
