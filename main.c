@@ -71,7 +71,7 @@ int main(int argc,char**argv)
 		n_ruchu++;
 	}
 	printf("Koniec gry.Liczba zdobytych punktow:%d\n",pkt);
-	Tabela wyniki[10];
+	Tabela wyniki[5];
 	czytaj_wyniki(wyniki, &count);
 	zmien_wyniki(wyniki, &count, nick, pkt);
 	zapisz_wyniki(wyniki, count);
