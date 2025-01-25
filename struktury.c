@@ -54,18 +54,21 @@ void ustaw_sasiadow(int y,int x,board**pole)
 	{
 		for(int j=0;j<x;j++)
 		{
+			int n=0;
 			            // Iteracja po sąsiadach
             		for (int k = 0; k < 8; k++) 
-			{
+					{
                 		int ni = i + offsets[k][0];
                 		int nj = j + offsets[k][1];
 
                			 // Sprawdzenie granic
                 		if (ni >= 0 && ni < y && nj >= 0 && nj < x) 
-				{
-                    			pole[i][j].bomby_blisko += pole[ni][nj].IsMine;
+						{
+								n += pole[ni][nj].IsMine;
+                    			 
                	 		}
             		}
+			pole[i][j].bomby_blisko=n;
 			if(pole[i][j].bomby_blisko!=0)
 				printf("sosiad: %d %d %d\n",i+1,j+1,pole[i][j].bomby_blisko);
 		}

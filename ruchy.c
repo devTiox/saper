@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include "struktury.h"
 #include "ruchy.h"
+#include "generator_min.h"
+#include "wypisywanie.h"
+
 
 void koniec(PlayBoard**Plansza, board**bomby, int y, int x)
 {
@@ -77,41 +80,59 @@ int ruch_f(PlayBoard** Plansza, board** bomby, int y, int x, int a, int b)
 }
 
 
-int ruch(PlayBoard**Plansza, board**bomby, int y, int x)
+int ruch(PlayBoard**Plansza, board**bomby, int y, int x, int n, int l_bomb)
 {
 	int punkty=0;
         int a,b;
         char c;
-        printf("jaki ruch:");
+        printf("Podaj ruch: ");
        	scanf("%d %d %c",&a,&b,&c);
-	a=a-1;
+		a=a-1;
        	b=b-1;
-       	switch (c)
-       	{
-       	case 'm':
-       	        if(bomby[a][b].IsMine==1)
-				{
-       	            koniec(Plansza, bomby, y, x);
-					BOOM=0;
-               	}
-               	else
-               	{
-                    odkryj(Plansza, bomby, y, x, a, b, &punkty);
-               	}
-               	break;
-       	case 'f':
-       	case 'F':
-		if(Plansza[a][b].output[1]=='F')
-               		Plansza[a][b].output[1]='-';
-		else if(Plansza[a][b].output[1]=='-')
-			Plansza[a][b].output[1]='F';
-		else
-			;
-               	break;
+		if(a<=y && a>=0 && b<=x && b>=0){
+			switch (c)
+			{
+			case 'm':
+			case 'M':
+					if(bomby[a][b].IsMine==1)
+					{
+						if(n!=1){
+							koniec(Plansza, bomby, y, x);
+							BOOM=0;
+						}
+						else{
+							while(bomby[a][b].IsMine==1){
+								generuj(l_bomb, y, x, bomby);
+							}
+							odkryj(Plansza, bomby, y, x, a, b, &punkty);
+						}
+					}
+					else
+					{
+						odkryj(Plansza, bomby, y, x, a, b, &punkty);
+					}
+					break;
+			case 'f':
+			case 'F':
+			if(Plansza[a][b].output[1]=='F')
+						Plansza[a][b].output[1]='-';
+			else if(Plansza[a][b].output[1]=='-')
+				Plansza[a][b].output[1]='F';
+			else
+				;
+					break;
 
-       	default:
-               	help();
-               	break;
-      	}
-	return punkty;
+			default:
+					printf("Zle wybrany parametr ruchu");
+					help();
+					return 0;
+					break;
+			}
+		return punkty;
+	}
+	else{
+		printf("Zle wybrana pozycja ruchu");
+		help();
+		return 0;
+	}
 }

@@ -3,6 +3,10 @@
 #include "struktury.h"
 #include "wypisywanie.h"
 
+void clear_console() {
+    system("cls");
+}
+
 int custom_mnoznik(int*x,int*y,int bombs_c)
 {
 	int mnoznik;
@@ -71,13 +75,18 @@ void wybor_poziomu(int*l_bomb,int*y,int*x,char move,int*mnoznik)
 void help()
 {
 	printf("Instrukcja obslugi:\n");
-	printf("Wybor poziomu trudnosci:\n");
+	printf("\nWybor poziomu trudnosci:\n");
 	printf("c-custom(wlasne ustawienia,koniecznosc podania ilosci bomb(nie wiecej niz 75%% planszy dla zachowania sensu rozgrywki)!!)\n");
 	printf("e-easy(latwy 5x5 X bomb)\nm-medium(sredni 10x10 X bomb)\nh-hard(trudny 15x15 X bomb)\n");
+        printf("\nWybor ruchu:\n");
+        printf("Przy wyborze ruchu należy podać pozycje y pozycje x oraz parametr ruchu\n");
+        printf("Pozycja y i x musza znajdowac sie na planszy\n");
+        printf("Parametrem funkcji moze byc:\nm/M (jesli chcemy odkryc pole)\nlub f/F (jesli chcemy postawic lub usunac flage)");
 }
 
 void poczatkowa(int y,int x,PlayBoard**Plansza)
 {
+        //clear_console();
 	for(int i=0;i<y;i++)
 	{
 		printf("%3d",i+1);
@@ -92,6 +101,7 @@ void poczatkowa(int y,int x,PlayBoard**Plansza)
 
 void zmienianie(int y,int x,PlayBoard**Plansza,int*punkty)
 {
+        //clear_console();
 	int pkt=punkty[0];
 	for(int k=0;k<=y;k++)
 		printf("%3d",k);
