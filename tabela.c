@@ -3,7 +3,7 @@
 #include <string.h>
 #include "tabela.h"
 
-#define MAX_ENTRIES 10
+#define MAX_ENTRIES 5
 
 
 
