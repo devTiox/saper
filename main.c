@@ -7,6 +7,19 @@
 #include "generator_min.h"
 #include "tabela.h"
 
+void generuj(int l_bomb, int y, int x, board**bomby)
+{
+	reset_bomb(y,x,bomby);
+	rozmiesc_bomby(l_bomb,y,x,bomby);	
+	ustaw_sasiadow(y,x,bomby);
+	while(sprawdzenie(y,x,bomby)>0)
+	{
+		int poprawki=sprawdzenie(y,x,bomby);
+		rozmiesc_bomby(poprawki,y,x,bomby);
+		ustaw_sasiadow(y,x,bomby);
+	}
+}
+
 int BOOM=1;
 
 int main(int argc,char**argv)
@@ -28,6 +41,7 @@ int main(int argc,char**argv)
 	int max_pkt;
 	int count;
 	int opt;
+	int n_ruchu=1;
  
  	if((opt = getopt(argc ,argv, "f:"))!=-1)
         {
@@ -41,26 +55,19 @@ int main(int argc,char**argv)
 	max_pkt=((x*y)-l_bomb)*mnoznik;
 	PlayBoard**Plansza=stworz_plansze(y,x);
 	board**bomby=pole_minowe(y,x);
-	rozmiesc_bomby(l_bomb,y,x,bomby);	
-	ustaw_sasiadow(y,x,bomby);
-	while(sprawdzenie(y,x,bomby)>0)
-	{
-		int poprawki=sprawdzenie(y,x,bomby);
-		rozmiesc_bomby(poprawki,y,x,bomby);
-		ustaw_sasiadow(y,x,bomby);
-	}
+	generuj(l_bomb, y, x, bomby);
 
 	for(int k=0;k<=x;k++)
 		printf("%3d",k);
 	printf("\n");
 	poczatkowa(y,x,Plansza);
-	        printf("Punkty: %d\n",pkt);
+	printf("Punkty: %d\n",pkt);
 
 	while(BOOM && pkt != max_pkt)
 	{
-		pkt=pkt+(ruch(Plansza, bomby, y, x)*mnoznik);
+		pkt=pkt+(ruch(Plansza, bomby, y, x, n_ruchu, l_bomb)*mnoznik);
 		zmienianie(y,x,Plansza,&pkt);
-
+		n_ruchu++;
 	}
 	printf("Koniec gry.Liczba zdobytych punktow:%d\n",pkt);
 	Tabela wyniki[10];

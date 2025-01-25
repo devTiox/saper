@@ -3,8 +3,8 @@
 3 test3 35
 4 test1 31
 5 test1 23
-6 test1 21
-7 test1 20
-8 test1 18
-9 test1 15
-10 test1 13
+6 test 23
+7 test1 21
+8 test1 20
+9 test1 18
+10 test1 15

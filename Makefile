@@ -9,7 +9,7 @@ main.o: ruchy.o generator_min.o struktury.o wypisywanie.o tabela.o main.c
 generator_min.o: generator_min.c generator_min.h struktury.o
 	$(CC) -c generator_min.c
 
-ruchy.o: ruchy.c ruchy.h struktury.o
+ruchy.o: ruchy.c ruchy.h struktury.o generator_min.o
 	$(CC) -c ruchy.c
 
 wypisywanie.o: wypisywanie.c wypisywanie.h struktury.o

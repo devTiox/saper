@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "struktury.h"
 #include "ruchy.h"
+#include "generator_min.h"
 
 void koniec(PlayBoard**Plansza, board**bomby, int y, int x)
 {
@@ -53,7 +54,7 @@ void odkryj_sasiadow(PlayBoard** Plansza, board** bomby, int y, int x, int c, in
 
 
 
-int ruch(PlayBoard**Plansza, board**bomby, int y, int x)
+int ruch(PlayBoard**Plansza, board**bomby, int y, int x, int n, int l_bomb)
 {
 	int punkty=0;
         int a,b;
@@ -67,8 +68,16 @@ int ruch(PlayBoard**Plansza, board**bomby, int y, int x)
        	case 'm':
        	        if(bomby[a][b].IsMine==1)
 				{
-       	            koniec(Plansza, bomby, y, x);
-					BOOM=0;
+					if(n!=1){
+       	            	koniec(Plansza, bomby, y, x);
+						BOOM=0;
+					}
+					else{
+						while(bomby[a][b].IsMine==1){
+							generuj(l_bomb, y, x, bomby);
+						}
+						odkryj(Plansza, bomby, y, x, a, b, &punkty);
+					}
                	}
                	else
                	{

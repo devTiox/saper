@@ -4,6 +4,12 @@
 #include "generator_min.h"
 #include "struktury.h"
 
+void reset_bomb(int y,int x,board**pole)
+{
+        for(int i=0;i<y;i++)
+                for(int j=0;j<x;j++)
+                        pole[i][j].IsMine=0;
+}
 void rozmiesc_bomby(int l_bomb,int y,int x,board**pole)
 {
 
