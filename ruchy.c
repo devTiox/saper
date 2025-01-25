@@ -51,6 +51,30 @@ void odkryj_sasiadow(PlayBoard** Plansza, board** bomby, int y, int x, int c, in
         odkryj(Plansza, bomby, y, x, c + 1, d + 1, punkty);
 }
 
+int ruch_f(PlayBoard** Plansza, board** bomby, int y, int x, int a, int b)
+{
+    int punkty = 0;
+
+    // Przekształcenie indeksów na 0-based
+    a = a - 1;
+    b = b - 1;
+
+    // Sprawdzanie zakresów indeksów
+    if (a < 0 || a >= y || b < 0 || b >= x) {
+        printf("Błąd: Indeksy poza zakresem: a=%d, b=%d\n", a + 1, b + 1);
+        exit(1);
+    }
+
+    // Sprawdzanie pola
+    if (bomby[a][b].IsMine == 1) {
+        koniec(Plansza, bomby, y, x);
+        BOOM = 0; // Globalna zmienna, upewnij się, że jest poprawnie zdefiniowana
+    } else {
+        odkryj(Plansza, bomby, y, x, a, b, &punkty);
+    }
+
+    return punkty;
+}
 
 
 int ruch(PlayBoard**Plansza, board**bomby, int y, int x)
