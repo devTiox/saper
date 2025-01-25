@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#ifndef TABELA_H
+#define TABELA_H
 
 typedef struct {
     char nick[100];
@@ -10,3 +9,5 @@ typedef struct {
 void czytaj_wyniki(Tabela wyniki[], int *count);
 void zapisz_wyniki(Tabela wyniki[], int count);
 void zmien_wyniki(Tabela wyniki[], int *count, const char *nick, int punkty);
+
+#endif
