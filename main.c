@@ -5,17 +5,28 @@
 #include "wypisywanie.h"
 #include "ruchy.h"
 #include "generator_min.h"
+#include "tabela.h"
 
 int BOOM=1;
 
 int main(int argc,char**argv)
 {
+	char nick[100];
+    printf("Podaj nick: ");
+    if (fgets(nick, sizeof(nick), stdin) != NULL) {
+        size_t len = strlen(nick);
+        if (len > 0 && nick[len-1] == '\n') {
+            nick[len-1] = '\0';
+        }
+    }
+    printf("Twoj nick: %s\n", nick);
 	int l_bomb;
 	int y, x;
 	char move;
 	int mnoznik;
 	int pkt=0;
 	int max_pkt;
+	int count;
 	int opt;
  
  	if((opt = getopt(argc ,argv, "f:"))!=-1)
@@ -52,6 +63,11 @@ int main(int argc,char**argv)
 
 	}
 	printf("Koniec gry.Liczba zdobytych punktow:%d\n",pkt);
-	
+	Tabela wyniki[10];
+	czytaj_wyniki(wyniki, &count);
+	zmien_wyniki(wyniki, &count, nick, pkt);
+	zapisz_wyniki(wyniki, count);
+
+
 	return 0;
 }

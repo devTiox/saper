@@ -1,0 +1,10 @@
+1 test2 47
+2 test1 45
+3 test3 35
+4 test1 31
+5 test1 23
+6 test1 21
+7 test1 20
+8 test1 18
+9 test1 15
+10 test1 13
