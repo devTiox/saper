@@ -7,6 +7,8 @@
 
 extern int BOOM;
 
+void game_from_file(FILE* plik, int* pkt);
+
 void koniec(PlayBoard**Plansza, board**bomby, int y, int x);
 
 int ruch_f(PlayBoard**Plansza, board**bomby, int y, int x, int a, int b);
