@@ -3,9 +3,15 @@
 #include "struktury.h"
 #include "wypisywanie.h"
 
+
 void clear_console() {
-    printf("\033[H\033[J");
+#ifdef _WIN32
+    system("cls");
+#else
+    system("clear");
+#endif
 }
+
 
 int custom_mnoznik(int*x,int*y,int bombs_c)
 {
@@ -90,7 +96,7 @@ void poczatkowa(int y,int x,PlayBoard**Plansza)
         for(int k=0;k<=x;k++)
 		printf("%3d",k);
 	printf("\n");
-        
+
 	for(int i=0;i<y;i++)
 	{
 		printf("%3d",i+1);
