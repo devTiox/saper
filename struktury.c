@@ -29,14 +29,6 @@ board**pole_minowe(int y,int x)
 		{
 			pole[i][j].IsMine=0;
 			pole[i][j].bomby_blisko=0;
-			pole[i][j].left=NULL;
-			pole[i][j].right=NULL;
-			pole[i][j].up=NULL;
-			pole[i][j].down=NULL;
-			pole[i][j].lup=NULL;
-			pole[i][j].pup=NULL;
-			pole[i][j].ldown=NULL;
-			pole[i][j].pdown=NULL;
 		}
 	}
 	return pole;
@@ -69,8 +61,8 @@ void ustaw_sasiadow(int y,int x,board**pole)
                	 		}
             		}
 			pole[i][j].bomby_blisko=n;
-			if(pole[i][j].bomby_blisko!=0)
-				printf("sosiad: %d %d %d\n",i+1,j+1,pole[i][j].bomby_blisko);
+			//if(pole[i][j].bomby_blisko!=0)
+				//printf("sosiad: %d %d %d\n",i+1,j+1,pole[i][j].bomby_blisko);
 		}
 	}
 

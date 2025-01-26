@@ -153,14 +153,14 @@ int ruch(PlayBoard**Plansza, board**bomby, int y, int x, int n, int l_bomb)
         int a,b;
         char c;
         printf("Podaj ruch: ");
-       	scanf("%d %d %c",&a,&b,&c);
+       	scanf("%c %d %d",&c,&a,&b);
 		a=a-1;
        	b=b-1;
 		if(a<=y && a>=0 && b<=x && b>=0){
 			switch (c)
 			{
-			case 'm':
-			case 'M':
+			case 'r':
+			case 'R':
 					if(bomby[a][b].IsMine==1)
 					{
 						if(n!=1){

@@ -25,7 +25,7 @@ void rozmiesc_bomby(int l_bomb,int y,int x,board**pole)
                         {
                                 pole[bomb_y][bomb_x].IsMine=1;
                                 rozlozone++;
-                                printf("MINA: %d %d %d\n",bomb_y+1,bomb_x+1,pole[bomb_y][bomb_x].IsMine);
+                                //printf("MINA: %d %d %d\n",bomb_y+1,bomb_x+1,pole[bomb_y][bomb_x].IsMine);
                         }
                 }
         }

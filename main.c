@@ -48,7 +48,7 @@ int main(int argc,char**argv)
  	if((opt = getopt(argc ,argv, "f:"))!=-1)
         {
                 FILE*plik=fopen(optarg,"r");
-		game_from_file(plik,&pkt);
+				game_from_file(plik,&pkt);
                 return 0;
         }
 
