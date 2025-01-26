@@ -4,6 +4,7 @@
 #include "ruchy.h"
 #include "generator_min.h"
 #include "wypisywanie.h"
+#include "unistd.h"
 
 void game_from_file(FILE* plik, int* pkt) {
     char line[256];
@@ -62,6 +63,7 @@ void game_from_file(FILE* plik, int* pkt) {
             *pkt += ruch_f(Plansza, pola, y, x, a, b) * mnoznik;
             zmienianie(y, x, Plansza, pkt);
             ruch++;
+	    sleep(1);
             if(BOOM==0)
             {
                     koniec(Plansza, pola, y, x);
@@ -69,6 +71,17 @@ void game_from_file(FILE* plik, int* pkt) {
             }
         }
     }
+    int pola_odkryte=0;
+    for(int i=0;i<y;i++)
+    {
+	    for(int j=0;j<x;j++)
+	    {
+		    if(Plansza[i][j].output[1]!='-')
+			    pola_odkryte++;
+	    }
+    }
+    if(pola_odkryte<x*y-bombs_c)
+	    BOOM=0;
     printf("Wykonane ruchy:%d\nZdobyte punkty:%d\nStatus koncowy:%d\n", ruch, *pkt, BOOM);
 }
 
@@ -190,7 +203,7 @@ int ruch(PlayBoard**Plansza, board**bomby, int y, int x, int n, int l_bomb)
 					break;
 
 			default:
-					printf("Zle wybrany parametr ruchu");
+					printf("Zle wybrany parametr ruchu\n");
 					help();
 					return 0;
 					break;
@@ -198,7 +211,7 @@ int ruch(PlayBoard**Plansza, board**bomby, int y, int x, int n, int l_bomb)
 		return punkty;
 	}
 	else{
-		printf("Zle wybrana pozycja ruchu");
+		printf("Zle wybrana pozycja ruchu\n");
 		help();
 		return 0;
 	}

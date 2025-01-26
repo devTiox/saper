@@ -4,7 +4,7 @@
 #include "wypisywanie.h"
 
 void clear_console() {
-    system("cls");
+    printf("\033[H\033[J");
 }
 
 int custom_mnoznik(int*x,int*y,int bombs_c)
@@ -81,7 +81,7 @@ void help()
         printf("\nWybor ruchu:\n");
         printf("Przy wyborze ruchu należy podać parametr ruchu, pozycje y oraz pozycje x\n");
         printf("Pozycje y i x musza znajdowac sie na planszy\n");
-        printf("Parametrem funkcji moze byc:\nr/R (jesli chcemy odkryc pole)\nlub f/F (jesli chcemy postawic lub usunac flage)");
+        printf("Parametrem funkcji moze byc:\nr/R (jesli chcemy odkryc pole)\nlub f/F (jesli chcemy postawic lub usunac flage)\n");
 }
 
 void poczatkowa(int y,int x,PlayBoard**Plansza)
