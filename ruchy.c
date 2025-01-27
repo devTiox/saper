@@ -165,7 +165,7 @@ int ruch(PlayBoard**Plansza, board**bomby, int y, int x, int n, int l_bomb)
 	int punkty=0;
         int a,b;
         char c;
-        printf("Podaj ruch: ");
+        printf("Podaj ruch:\n");
        	scanf("%c %d %d",&c,&a,&b);
 		a=a-1;
        	b=b-1;
