@@ -167,24 +167,28 @@ int ruch(PlayBoard**Plansza, board**bomby, int y, int x, int n, int l_bomb)
         char c;
         printf("Podaj ruch:\n");
        	scanf("%c %d %d",&c,&a,&b);
+        
 		a=a-1;
        	b=b-1;
 		if(a<=y && a>=0 && b<=x && b>=0){
 			switch (c)
 			{
-			case 'r':
 			case 'R':
+			case 'r':
 					if(bomby[a][b].IsMine==1)
 					{
-						if(n!=1){
-							koniec(Plansza, bomby, y, x);
-							BOOM=0;
+						if(n<3){
+                            while(bomby[a][b].IsMine==1){
+								generuj(l_bomb, y, x, bomby);
+                                
+							}
+                            
+							odkryj(Plansza, bomby, y, x, a, b, &punkty);
+							
 						}
 						else{
-							while(bomby[a][b].IsMine==1){
-								generuj(l_bomb, y, x, bomby);
-							}
-							odkryj(Plansza, bomby, y, x, a, b, &punkty);
+							koniec(Plansza, bomby, y, x);
+							BOOM=0;
 						}
 					}
 					else
