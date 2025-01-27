@@ -36,13 +36,13 @@ int custom_mnoznik(int*x,int*y,int bombs_c)
 }
 void wybor_poziomu(int*l_bomb,int*y,int*x,char move,int*mnoznik)
 {
-	printf("Wybierz poziom trudnosci ");
+	printf("Wybierz poziom trudnosci: ");
         if(scanf("%c",&move)!=0)
         {
                 switch (move)
                         {
                         case 'c':
-                                printf("Podaj rozmiar planszy");
+                                printf("Podaj rozmiar planszy: ");
 				int bombs_c;
                                 scanf("%d %d %d",y,x,&bombs_c);
 				*mnoznik=custom_mnoznik(x,y,bombs_c);
