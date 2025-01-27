@@ -49,6 +49,10 @@ int main(int argc,char**argv)
         {
                 FILE*plik=fopen(optarg,"r");
 				game_from_file(plik,&pkt);
+				Tabela wyniki[5];
+				czytaj_wyniki(wyniki, &count);
+				zmien_wyniki(wyniki, &count, nick, pkt);
+				zapisz_wyniki(wyniki, count);
                 return 0;
         }
 

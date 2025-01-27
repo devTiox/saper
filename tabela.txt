@@ -1,5 +1,5 @@
 1 test 109
-2 test2 47
-3 test1 45
-4 test3 35
-5 test1 31
+2 tescik 102
+3 test2 47
+4 test1 45
+5 test3 35
